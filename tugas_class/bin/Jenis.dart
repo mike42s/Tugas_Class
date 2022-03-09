@@ -3,7 +3,9 @@ import 'tugas.dart';
 import 'Pegawai.dart';
 
 class Mahasiswa_s extends Mahasiswa with Absensi, Target {
-  Mahasiswa_s(String? nama, int? usia, int? SKS) : super(nama, usia, SKS);
+  Mahasiswa_s(String? nama, int? usia, int? SKS, bool? Status, double? IPS,
+      double? IPK, int? totalSKS)
+      : super(nama, usia, SKS, Status, IPS, IPK, totalSKS);
 }
 
 class Dosen_tetap extends Dosen_Tetap with TanggungJawab {
