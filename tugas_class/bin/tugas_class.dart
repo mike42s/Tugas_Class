@@ -9,10 +9,8 @@ void main(List<String> arguments) {
       'Nama ${sm1.nama} - Usia : ${sm1.usia} - Status : ${sm1.Status} - IPS : ${sm1.IPS} - IPK : ${sm1.IPK} - Total SKS : ${sm1.totalSKS}');
   sm1.target();
   print('--');
-  var sm2 = Dosen_Tetap("Pak H", 25, 3000000);
-  print('Nama ${sm2.nama} - Tugas : ${sm2.peran()} - Gaji : ${sm2.Gaji}');
-  print('--');
-  var sm3 = Dosen_tidakTetap("Pak G", 45, 6000000);
-  print('Nama ${sm3.nama} - Tugas : ${sm3.peran()} - Gaji : ${sm3.Gaji}');
+  var sm2 = Dosen_Tetap("nama", 33, 2221, 22222, 2222, 2222, 100);
+  print(
+      'Nama ${sm2.nama} - Tugas : ${sm2.peran()} - Gaji : ${sm2.Gaji} - tunjangankehadiran : ${sm2.tunjangankehadiran}');
   print('--');
 }

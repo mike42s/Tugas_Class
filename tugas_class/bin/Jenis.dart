@@ -9,12 +9,10 @@ class Mahasiswa_s extends Mahasiswa with Absensi, Target {
 }
 
 class Dosen_tetap extends Dosen_Tetap with TanggungJawab {
-  Dosen_tetap(String? nama, int? usia, int? Gaji) : super(nama, usia, Gaji);
-}
-
-class Dosen_tidakTetap extends Dosen_TidakTetap with TanggungJawab {
-  Dosen_tidakTetap(String? nama, int? usia, int? Gaji)
-      : super(nama, usia, Gaji);
+  Dosen_tetap(String? nama, int? usia, int? Gaji, int? TambahanGaji,
+      int? jumlah_sks, int? penghasilan, int? tunjangankehadiran)
+      : super(nama, usia, Gaji, TambahanGaji, jumlah_sks, penghasilan,
+            tunjangankehadiran);
 }
 
 // class Staf extends Dosen with TanggungJawab {
