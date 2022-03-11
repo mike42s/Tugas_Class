@@ -12,11 +12,20 @@ class Mahasiswa extends Person implements Tugas {
   Mahasiswa(String? nama, int? usia, int? SKS, bool? Status, double? IPS,
       double? IPK, int? totalSKS)
       : super(nama, usia) {
-    this.SKS = SKS;
-    this.IPK = IPK;
-    this.IPS = IPS;
-    this.totalSKS = totalSKS;
-    this.Status = Status;
+    if (SKS! >= 2 &&
+        SKS! <= 24 &&
+        IPS! >= 0 &&
+        IPS! <= 4.0 &&
+        IPK! >= 0 &&
+        IPK! <= 4.0) {
+      this.SKS = SKS;
+      this.IPK = IPK;
+      this.IPS = IPS;
+      this.totalSKS = totalSKS;
+      this.Status = Status;
+    } else {
+      this.SKS = null;
+    }
   }
   get total_SKS {
     return totalSKS;
