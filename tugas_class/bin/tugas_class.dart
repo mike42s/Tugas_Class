@@ -16,7 +16,7 @@ void main(List<String> arguments) {
   // print('--');
 
   String? Input;
-  List myList = [];
+  List<Mahasiswa_s> myList = [];
   int counter_mylist = 0;
   String? coba_input;
   int exit = 0;
@@ -27,6 +27,7 @@ void main(List<String> arguments) {
     Input = stdin.readLineSync();
     menu = int.parse(Input!);
     if (menu == 1) {
+      //kurang sistem login per mhs, buat menu untuk menunjukan IPS,IPK ,mengambil SKS minimal 2 sks
       stdout.write("Mahasiswa \n");
       stdout.write("Nama : ");
       String? Nama = stdin.readLineSync(); //Nama
@@ -87,6 +88,31 @@ void main(List<String> arguments) {
       for (int i = 0; i < myList.length; i++) {
         print(
             'Nama ${myList[i].nama} - Usia : ${myList[i].usia} - SKS : ${myList[i].SKS} -Mahasiswa Aktif : ${myList[i].Status} - IPS : ${myList[i].IPS} - IPK : ${myList[i].IPK} - Total SKS : ${myList[i].totalSKS}');
+      }
+    } else if (menu == 4) {
+      for (int i = 0; i < myList.length; i++) {
+        print(
+            '${i + 1}. Nama ${myList[i].nama} - Usia : ${myList[i].usia} - SKS : ${myList[i].SKS} -Mahasiswa Aktif : ${myList[i].Status} - IPS : ${myList[i].IPS} - IPK : ${myList[i].IPK} - Total SKS : ${myList[i].totalSKS}');
+      }
+      stdout.write("Edit Data Mahasiswa Ke - ");
+      coba_input = stdin.readLineSync();
+      int? counter_mhs = int.parse(coba_input!) - 1; //counter_mhs
+      print(
+          'Apakah Benar Data Mahasiswa ini?. Nama ${myList[counter_mhs].nama}- Usia : ${myList[counter_mhs].usia}- SKS : ${myList[counter_mhs].SKS} -Mahasiswa Aktif : ${myList[counter_mhs].Status} - IPS : ${myList[counter_mhs].IPS} - IPK : ${myList[counter_mhs].IPK} - Total SKS : ${myList[counter_mhs].totalSKS}');
+      stdout.write("Data apa yang ingin dirubah?\n1.Status Cuti Mahasiswa.\n");
+      coba_input = stdin.readLineSync();
+      int? menu4 = int.parse(coba_input!); //menu4
+      if (menu4 == 1) {
+        stdout.write("Untuk Aktif Jawab 1 atau untuk Tidak Aktif Jawab 2 : ");
+        coba_input = stdin.readLineSync();
+        int? temp = int.parse(coba_input!); //menu4
+        if (temp == 1) {
+          myList[counter_mhs].Status = true;
+        } else if (temp == 2) {
+          myList[counter_mhs].Status = false;
+        } else {
+          break;
+        }
       }
     }
   }
