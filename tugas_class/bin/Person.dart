@@ -3,7 +3,10 @@ class Person {
   String? _nama;
   int? _usia;
 
-  Person(this._nama, this._usia);
+  Person(String? nama, int? usia) {
+    this._nama = nama;
+    this._usia = usia;
+  }
   set nama(String data) {
     _nama = data;
   }
