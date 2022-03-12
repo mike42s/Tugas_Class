@@ -92,6 +92,7 @@ void main(List<String> arguments) {
           print('------------');
           int? menu4 = 0;
           while (menu4 != 5) {
+            //pakai buat sistem edit dan login
             stdout.write(
                 "Data apa yang ingin dirubah?\n1.Input IPS\n2.Input SKS\n3.Lihat IPK\n4.Status Cuti Mahasiswa.\n5.Lihat Jumlah SKS yang diambil\n6.Exit\n");
             coba_input = stdin.readLineSync();
@@ -185,18 +186,51 @@ void main(List<String> arguments) {
       Input = stdin.readLineSync();
       menu2 = int.parse(Input!);
       if (menu2 == 1) {
-        stdout.write(
-            "Login Sebagai Dosen? : \n1.Sebagai Dosen Tamu\n2.Sebagai Dosen Tetap\n3.Sebagai Dosen LB\n");
-        int? menu3;
-        Input = stdin.readLineSync();
-        menu3 = int.parse(Input!);
-        if (menu3 == 1) {
-          stdout.write("Login Sebagai Dosen Tamu\n");
-        } else if (menu3 == 2) {
-          stdout.write("Login Sebagai Dosen Tetap\n");
-        } else if (menu3 == 3) {
-          stdout.write("Login Sebagai Dosen LB\n");
+        stdout.write("Login Sebagai Dosen");
+        List<Person> myList3 = [];
+        stdout.write("Input Nama : ");
+        String? Nama = stdin.readLineSync(); //Nama
+        stdout.write("Usia : ");
+        coba_input = stdin.readLineSync();
+        int? Usia = int.parse(coba_input!);
+        myList3.add(Person(Nama, Usia));
+        int? temp_counter1 = -1;
+        int? temp_counter2 = -1;
+        int? temp_counter3 = -1;
+        for (int i = 0; i < counter_myListDosenTamu; i++) {
+          if (myListDosenTamu[i].nama == myList3[0].nama &&
+              myListDosenTamu[i].usia == myList3[0].usia) {
+            temp_counter1 = i;
+          }
         }
+        for (int i = 0; i < counter_myListDosenLB; i++) {
+          if (myListDosenLB[i].nama == myList3[0].nama &&
+              myListDosenLB[i].usia == myList3[0].usia) {
+            temp_counter2 = i;
+          }
+        }
+        for (int i = 0; i < counter_myListDosenTetap; i++) {
+          if (myListDosenTetap[i].nama == myList3[0].nama &&
+              myListDosenTetap[i].usia == myList3[0].usia) {
+            temp_counter3 = i;
+          }
+        }
+        if (temp_counter1 != null && temp_counter1 >= 0) {
+          stdout.write("Hasil yang ditemukan : \n Dosen Tamu : \n");
+          print(
+              'Nama ${myListDosenTamu[temp_counter1].nama} - Usia : ${myListDosenTamu[temp_counter1].usia} - Gaji : ${myListDosenTamu[temp_counter1].Gaji} - Tambahan Gaji : ${myListDosenTamu[temp_counter1].TambahanGaji}- Penghasilan : ${myListDosenTamu[temp_counter1].penghasilan} - Tunjangan Kehadiran : ${myListDosenTamu[temp_counter1].tunjangankehadiran} - Jumlah SKS : ${myListDosenTamu[temp_counter1].jumlah_sks} ');
+        } else if (temp_counter2 != null && temp_counter2 >= 0) {
+          stdout.write("Hasil yang ditemukan : \n Dosen LB : \n");
+          print(
+              'Nama ${myListDosenLB[temp_counter2].nama} - Usia : ${myListDosenLB[temp_counter2].usia} - Gaji : ${myListDosenLB[temp_counter2].Gaji} - Jumlah SKS : ${myListDosenLB[temp_counter2].jumlah_sks} - Penghasilan : ${myListDosenLB[temp_counter2].penghasilan}- Tambahan Gaji : ${myListDosenLB[temp_counter2].TambahanGaji}');
+        } else if (temp_counter3 != null && temp_counter3 >= 0) {
+          stdout.write("Hasil yang ditemukan : \n Dosen Tetap : \n");
+          print(
+              'Nama ${myListDosenTetap[temp_counter3].nama} - Usia : ${myListDosenTetap[temp_counter3].usia} - Gaji : ${myListDosenTetap[temp_counter3].Gaji} - Tambahan Gaji : ${myListDosenTetap[temp_counter3].TambahanGaji}- Penghasilan : ${myListDosenTetap[temp_counter3].penghasilan} - Tunjangan Kehadiran : ${myListDosenTetap[temp_counter3].tunjangankehadiran} - Jumlah SKS : ${myListDosenTetap[temp_counter3].jumlah_sks} ');
+        } else {
+          print('Data Tidak ditemukan');
+        }
+        print('------------');
       } else if (menu2 == 2) {
         stdout.write("Login Sebagai Staf\n");
       } else if (menu2 == 3) {
