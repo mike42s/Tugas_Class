@@ -194,9 +194,9 @@ void main(List<String> arguments) {
         coba_input = stdin.readLineSync();
         int? Usia = int.parse(coba_input!);
         myList3.add(Person(Nama, Usia));
-        int? temp_counter1 = -1;
-        int? temp_counter2 = -1;
-        int? temp_counter3 = -1;
+        int? temp_counter1 = null;
+        int? temp_counter2 = null;
+        int? temp_counter3 = null;
         for (int i = 0; i < counter_myListDosenTamu; i++) {
           if (myListDosenTamu[i].nama == myList3[0].nama &&
               myListDosenTamu[i].usia == myList3[0].usia) {
@@ -231,8 +231,43 @@ void main(List<String> arguments) {
           print('Data Tidak ditemukan');
         }
         print('------------');
+        // int? menu6 = -1;
+        // while (menu6 != 5) {
+        //
+        // }
       } else if (menu2 == 2) {
         stdout.write("Login Sebagai Staf\n");
+        List<Person> myList3 = [];
+        stdout.write("Input Nama : ");
+        String? Nama = stdin.readLineSync(); //Nama
+        stdout.write("Usia : ");
+        coba_input = stdin.readLineSync();
+        int? Usia = int.parse(coba_input!);
+        myList3.add(Person(Nama, Usia));
+        int? temp_counter1 = null;
+        for (int i = 0; i < counter_myListDosenTamu; i++) {
+          if (myListDosen[i].nama == myList3[0].nama &&
+              myListDosen[i].usia == myList3[0].usia) {
+            temp_counter1 = i;
+          }
+        }
+        print(
+            'Nama ${myListDosen[temp_counter1!].nama} - Usia : ${myListDosen[temp_counter1].usia} - Gaji : ${myListDosen[temp_counter1].Gaji}- Penghasilan : ${myListDosen[temp_counter1].penghasilan} - Cuti : ${myListDosen[temp_counter1].cuti} - Absensi : ${myListDosen[temp_counter1].absensi} - Jumlah Absensi : ${myListDosen[temp_counter1].jumlah_absensi} - Tunjangan Kehadiran : ${myListDosen[temp_counter1].tunjangankehadiran}');
+        myListDosen[temp_counter1].jumlah_absensi =
+            myListDosen[temp_counter1].jumlah_absensi! + 1;
+
+        int? menu6 = -1;
+        do {
+          stdout.write("1. Pengajuan Cuti\n2.Total Gaji\n");
+          coba_input = stdin.readLineSync();
+          menu6 = int.parse(coba_input!);
+          if (menu6 == 1) {
+            print('Pengajuan Cuti : \n');
+            myListDosen[temp_counter1].pengajuan_cuti(true);
+          } else if (menu6 == 2) {
+            myListDosen[temp_counter1].absensi_perhitungan(true);
+          }
+        } while (menu6 != 5);
       } else if (menu2 == 3) {
         stdout.write("Daftar sebagai? 1.Staf, 2.Dosen : ");
         int? choice;
@@ -245,22 +280,22 @@ void main(List<String> arguments) {
           stdout.write("\nUsia : ");
           coba_input = stdin.readLineSync();
           int? Usia = int.parse(coba_input!); //Usia
-          stdout.write("\Gaji : ");
+          stdout.write("\nGaji : ");
           coba_input = stdin.readLineSync();
           int? Gaji = int.parse(coba_input!); //Gaji
 
-          stdout.write("\penghasilan : ");
+          stdout.write("\npenghasilan : ");
           coba_input = stdin.readLineSync();
           int? penghasilan = int.parse(coba_input!); //penghasilan
 
-          stdout.write("\cuti : ");
+          stdout.write("\ncuti : ");
           coba_input = stdin.readLineSync();
           int? cuti = int.parse(coba_input!); //cuti
           stdout.write("\nAbsensi? \nTrue = 1, False = 2 : ");
           coba_input = stdin.readLineSync();
           int? absensi = int.parse(coba_input!); //absensi
 
-          stdout.write("\jumlah_absensi : ");
+          stdout.write("\njumlah_absensi : ");
           coba_input = stdin.readLineSync();
           int? jumlah_absensi = int.parse(coba_input!); //jumlah_absensi
           stdout.write("\ntunjangankehadiran : ");

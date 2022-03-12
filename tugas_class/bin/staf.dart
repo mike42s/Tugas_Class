@@ -28,9 +28,10 @@ class Staf extends Pegawai implements Tugas {
     }
   }
 
-  void absensi_perhitungan(bool? x, int? bonus) {
+  void absensi_perhitungan(bool? x) {
     if (x!) {
-      this.tunjangankehadiran = this.tunjangankehadiran! + bonus!;
+      this.tunjangankehadiran =
+          this.tunjangankehadiran! + this.jumlah_absensi! * 20000;
       stdout.write("Tunjangan Kehadiran Berhasil : ${this.tunjangankehadiran}");
     } else {
       stdout.write(
