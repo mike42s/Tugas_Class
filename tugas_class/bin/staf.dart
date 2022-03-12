@@ -23,6 +23,7 @@ class Staf extends Pegawai implements Tugas {
       stdout.write("Pengajuan Cuti Berhasil\n");
       cuti--;
       stdout.write("Sisa Cuti : $cuti hari");
+      stdout.write("\n");
     } else {
       stdout.write("Pengajuan Cuti Tidak Berhasil\n");
     }
