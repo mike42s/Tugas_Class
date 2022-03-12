@@ -25,6 +25,19 @@ void main(List<String> arguments) {
   print(
       'Nama ${sm3.nama} - Usia : ${sm3.usia} - Gaji : ${sm3.Gaji} - Tambahan Gaji : ${sm3.TambahanGaji}- Penghasilan : ${sm3.penghasilan} - Tunjangan Kehadiran : ${sm3.tunjangankehadiran} - Jumlah SKS : ${sm3.jumlah_sks} ');
   print('--');
+  var sm4 = Dosen_3("z", 10, 1, 2, 3, 4, 10);
+  sm4.penghasilan_bulanan();
+  print(
+      'Nama ${sm4.nama} - Usia : ${sm4.usia} - Gaji : ${sm4.Gaji} - Tambahan Gaji : ${sm4.TambahanGaji}- Penghasilan : ${sm4.penghasilan} - Tunjangan Kehadiran : ${sm4.tunjangankehadiran} - Jumlah SKS : ${sm4.jumlah_sks} ');
+  print('--');
+  var sm5 = Staf_1("b", 12, 1000, 1000, 12, true, 0, 200);
+  sm5.penghasilan_bulanan();
+  print(
+      'Nama ${sm5.nama} - Usia : ${sm5.usia} - Gaji : ${sm5.Gaji}- Penghasilan : ${sm5.penghasilan} - Cuti : ${sm5.cuti} - Absensi : ${sm5.absensi} - Jumlah Absensi : ${sm5.jumlah_absensi} - Tunjangan Kehadiran : ${sm5.tunjangankehadiran}');
+  print('--');
+  sm5.absensi_perhitungan(true, 4000);
+  sm5.pengajuan_cuti(true);
+
   // String? Input;
   // List<Mahasiswa_s> myList = [];
   // List<Mahasiswa_s> myListDosen = [];

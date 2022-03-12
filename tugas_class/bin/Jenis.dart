@@ -1,6 +1,7 @@
 import 'Mahasiswa.dart';
 import 'tugas.dart';
 import 'Dosen.dart';
+import 'staf.dart';
 
 class Mahasiswa_s extends Mahasiswa with Absensi, Target {
   Mahasiswa_s(String? nama, int? usia, int? SKS, bool? Status, double? IPS,
@@ -26,6 +27,13 @@ class Dosen_3 extends Dosen_Tetap {
       int? penghasilan, int? tunjangankehadiran, int? jumlahsks)
       : super(nama, usia, Gaji, TambahanGaji, penghasilan, tunjangankehadiran,
             jumlahsks);
+}
+
+class Staf_1 extends Staf {
+  Staf_1(String? nama, int? usia, int? Gaji, int? penghasilan, int? cuti,
+      bool? absensi, int? jumlah_absensi, int? tunjangankehadiran)
+      : super(nama, usia, Gaji, penghasilan, cuti, absensi, jumlah_absensi,
+            tunjangankehadiran);
 }
 
 // class Staf extends Dosen with TanggungJawab {
