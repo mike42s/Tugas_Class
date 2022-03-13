@@ -19,7 +19,7 @@ class Staf extends Pegawai implements Tugas {
     this.tunjangankehadiran = tunjangankehadiran;
   }
   void pengajuan_cuti(bool? a) {
-    if (a!) {
+    if (a! && this.cuti > 0) {
       stdout.write("Pengajuan Cuti Berhasil\n");
       cuti--;
       stdout.write("Sisa Cuti : $cuti hari");
