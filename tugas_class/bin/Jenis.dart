@@ -35,8 +35,3 @@ class Staf_1 extends Staf {
       : super(nama, usia, Gaji, penghasilan, cuti, absensi, jumlah_absensi,
             tunjangankehadiran);
 }
-
-// class Staf extends Dosen with TanggungJawab {
-//   Staf(String? nama, int? usia, int? Gaji) : super(nama, usia, Gaji);
-// }
-

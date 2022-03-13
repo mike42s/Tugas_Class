@@ -10,6 +10,7 @@ import 'dart:io';
 //Dosen tgl lihat jumlah sks, sistem login, penghasilan sama perhtiungan dpet brapa
 //staf blom
 void main(List<String> arguments) {
+  //cara manual
   // var sm1 = Mahasiswa_s("Siapapun", 20, 5, true, 3.0, 3.5, 50);
   // print(
   //     'Nama ${sm1.nama} - Usia : ${sm1.usia} - Status : ${sm1.Status} - IPS : ${sm1.IPS} - IPK : ${sm1.IPK} - Total SKS : ${sm1.totalSKS}');
@@ -38,6 +39,8 @@ void main(List<String> arguments) {
   // print('--');
   // sm5.absensi_perhitungan(true, 4000);
   // sm5.pengajuan_cuti(true);
+
+  //auto
   String? Input;
   List<Mahasiswa_s> myList = [];
   List<Staf> myListDosen = [];
@@ -53,9 +56,18 @@ void main(List<String> arguments) {
   int counter_myListDosenLB = 0;
   List<Dosen_Tetap> myListDosenTetap = [];
   int counter_myListDosenTetap = 0;
+  int? Gaji_Start = 0; //Asumsi semua gaji pegawai = sama
+
+  //semi auto
+  myListDosenTamu.add(Dosen_Tamu("Pak Tamu", 30, 300000, 0, 40000, 5000, 2));
+  counter_myListDosenTamu++;
+
+  stdout.write("Gaji Semua Pegawai : ");
+  coba_input = stdin.readLineSync();
+  Gaji_Start = int.parse(coba_input!);
   while (exit != 1) {
     stdout.write(
-        "Login Sebagai? : \n1.Sebagai Mahasiswa\n2.Sebagai Pegawai\n3.Cek All\n4.Edit Data Mahasiswa\n");
+        "Login Sebagai? : \n1.Sebagai Mahasiswa\n2.Sebagai Pegawai\n3.Cek All\n");
     Input = stdin.readLineSync();
     menu = int.parse(Input!);
     if (menu == 1) {
@@ -197,6 +209,8 @@ void main(List<String> arguments) {
         int? temp_counter1 = null;
         int? temp_counter2 = null;
         int? temp_counter3 = null;
+        String? kalimat = "";
+        int? temp = 0;
         for (int i = 0; i < counter_myListDosenTamu; i++) {
           if (myListDosenTamu[i].nama == myList3[0].nama &&
               myListDosenTamu[i].usia == myList3[0].usia) {
@@ -219,22 +233,55 @@ void main(List<String> arguments) {
           stdout.write("Hasil yang ditemukan : \n Dosen Tamu : \n");
           print(
               'Nama ${myListDosenTamu[temp_counter1].nama} - Usia : ${myListDosenTamu[temp_counter1].usia} - Gaji : ${myListDosenTamu[temp_counter1].Gaji} - Tambahan Gaji : ${myListDosenTamu[temp_counter1].TambahanGaji}- Penghasilan : ${myListDosenTamu[temp_counter1].penghasilan} - Tunjangan Kehadiran : ${myListDosenTamu[temp_counter1].tunjangankehadiran} - Jumlah SKS : ${myListDosenTamu[temp_counter1].jumlah_sks} ');
+          kalimat = "Dosentamu";
+          temp = temp_counter1;
         } else if (temp_counter2 != null && temp_counter2 >= 0) {
           stdout.write("Hasil yang ditemukan : \n Dosen LB : \n");
           print(
               'Nama ${myListDosenLB[temp_counter2].nama} - Usia : ${myListDosenLB[temp_counter2].usia} - Gaji : ${myListDosenLB[temp_counter2].Gaji} - Jumlah SKS : ${myListDosenLB[temp_counter2].jumlah_sks} - Penghasilan : ${myListDosenLB[temp_counter2].penghasilan}- Tambahan Gaji : ${myListDosenLB[temp_counter2].TambahanGaji}');
+          kalimat = "DosenLB";
+          temp = temp_counter2;
         } else if (temp_counter3 != null && temp_counter3 >= 0) {
           stdout.write("Hasil yang ditemukan : \n Dosen Tetap : \n");
           print(
               'Nama ${myListDosenTetap[temp_counter3].nama} - Usia : ${myListDosenTetap[temp_counter3].usia} - Gaji : ${myListDosenTetap[temp_counter3].Gaji} - Tambahan Gaji : ${myListDosenTetap[temp_counter3].TambahanGaji}- Penghasilan : ${myListDosenTetap[temp_counter3].penghasilan} - Tunjangan Kehadiran : ${myListDosenTetap[temp_counter3].tunjangankehadiran} - Jumlah SKS : ${myListDosenTetap[temp_counter3].jumlah_sks} ');
+          kalimat = "DosenTetap";
+          temp = temp_counter3;
         } else {
           print('Data Tidak ditemukan');
         }
         print('------------');
-        // int? menu6 = -1;
-        // while (menu6 != 5) {
-        //
-        // }
+        int? menu6 = 0;
+        do {
+          stdout.write("1.Lihat SKS\n2.Lihat Penghasilan\n3.Exit\n");
+          coba_input = stdin.readLineSync();
+          menu6 = int.parse(coba_input!);
+          if (menu6 == 1) {
+            print('Lihat SKS : \n');
+
+            if (kalimat == "Dosentamu") {
+              print('Jumlah SKS : ${myListDosenTamu[temp].jumlah_sks}');
+            } else if (kalimat == "DosenLB") {
+              print('Jumlah SKS : ${myListDosenLB[temp].jumlah_sks}');
+            } else if (kalimat == "DosenTetap") {
+              print('Jumlah SKS : ${myListDosenTetap[temp].jumlah_sks}');
+            } else {
+              print('Data Gagal Di Akses.');
+            }
+          } else if (menu6 == 2) {
+            print('Lihat Penghasilan: \n');
+            if (kalimat == "Dosentamu") {
+              print('Lihat Penghasilan : ${myListDosenTamu[temp].penghasilan}');
+            } else if (kalimat == "DosenLB") {
+              print('Lihat Penghasilan: ${myListDosenLB[temp].penghasilan}');
+            } else if (kalimat == "DosenTetap") {
+              print(
+                  'Lihat Penghasilan : ${myListDosenTetap[temp].penghasilan}');
+            } else {
+              print('Data Gagal Di Akses.');
+            }
+          }
+        } while (menu6 != 3);
       } else if (menu2 == 2) {
         stdout.write("Login Sebagai Staf\n");
         List<Person> myList3 = [];
@@ -255,11 +302,12 @@ void main(List<String> arguments) {
           print(
               'Nama ${myListDosen[temp_counter1!].nama} - Usia : ${myListDosen[temp_counter1].usia} - Gaji : ${myListDosen[temp_counter1].Gaji}- Penghasilan : ${myListDosen[temp_counter1].penghasilan} - Cuti : ${myListDosen[temp_counter1].cuti} - Absensi : ${myListDosen[temp_counter1].absensi} - Jumlah Absensi : ${myListDosen[temp_counter1].jumlah_absensi} - Tunjangan Kehadiran : ${myListDosen[temp_counter1].tunjangankehadiran}');
           myListDosen[temp_counter1].jumlah_absensi =
-              myListDosen[temp_counter1].jumlah_absensi! + 1;
+              myListDosen[temp_counter1].jumlah_absensi! +
+                  1; //Asumsi tiap login = absen
 
           int? menu6 = -1;
           do {
-            stdout.write("1. Pengajuan Cuti\n2.Total Gaji\n");
+            stdout.write("1.Pengajuan Cuti\n2.Total Gaji\n");
             coba_input = stdin.readLineSync();
             menu6 = int.parse(coba_input!);
             if (menu6 == 1) {
@@ -282,9 +330,9 @@ void main(List<String> arguments) {
           stdout.write("\nUsia : ");
           coba_input = stdin.readLineSync();
           int? Usia = int.parse(coba_input!); //Usia
-          stdout.write("\nGaji : ");
-          coba_input = stdin.readLineSync();
-          int? Gaji = int.parse(coba_input!); //Gaji
+          // stdout.write("\nGaji : ");
+          // coba_input = stdin.readLineSync();
+          // int? Gaji = int.parse(coba_input!); //Gaji
 
           stdout.write("\npenghasilan : ");
           coba_input = stdin.readLineSync();
@@ -303,6 +351,12 @@ void main(List<String> arguments) {
           stdout.write("\ntunjangankehadiran : ");
           coba_input = stdin.readLineSync();
           int? tunjangankehadiran = int.parse(coba_input!); //tunjangankehadiran
+          while (tunjangankehadiran! < 0) {
+            stdout.write(
+                "\nInput Ulang, Tunjangan Kehadiran tidak bisa minus (<0) \ntunjangankehadiran : ");
+            coba_input = stdin.readLineSync();
+            tunjangankehadiran = int.parse(coba_input!); //tunjangankehadiran
+          }
 
           bool? Status_If;
           if (absensi == 1) {
@@ -311,8 +365,8 @@ void main(List<String> arguments) {
             Status_If = false;
           }
           stdout.write("\n");
-          myListDosen.add(Staf(Nama, Usia, Gaji, penghasilan, cuti, Status_If,
-              jumlah_absensi, tunjangankehadiran));
+          myListDosen.add(Staf(Nama, Usia, Gaji_Start, penghasilan, cuti,
+              Status_If, jumlah_absensi, tunjangankehadiran));
           counter_myListDosen++;
         } else if (choice == 2) {
           stdout.write(
@@ -328,9 +382,9 @@ void main(List<String> arguments) {
             stdout.write("\nUsia : ");
             coba_input = stdin.readLineSync();
             int? Usia = int.parse(coba_input!); //Usia
-            stdout.write("\Gaji : ");
-            coba_input = stdin.readLineSync();
-            int? Gaji = int.parse(coba_input!); //Gaji
+            // stdout.write("\Gaji : ");
+            // coba_input = stdin.readLineSync();
+            // int? Gaji = int.parse(coba_input!); //Gaji
             stdout.write("\npenghasilan : ");
             coba_input = stdin.readLineSync();
             int? penghasilan = int.parse(coba_input!); //penghasilan
@@ -345,8 +399,14 @@ void main(List<String> arguments) {
             coba_input = stdin.readLineSync();
             int? tunjangankehadiran =
                 int.parse(coba_input!); //tunjangankehadiran
+            while (tunjangankehadiran! < 0) {
+              stdout.write(
+                  "\nInput Ulang, Tunjangan Kehadiran tidak bisa minus (<0) \ntunjangankehadiran : ");
+              coba_input = stdin.readLineSync();
+              tunjangankehadiran = int.parse(coba_input!); //tunjangankehadiran
+            }
 
-            myListDosenTamu.add(Dosen_Tamu(Nama, Usia, Gaji, TambahanGaji,
+            myListDosenTamu.add(Dosen_Tamu(Nama, Usia, 0, TambahanGaji,
                 penghasilan, tunjangankehadiran, jumlahsks));
             //Print
             print(
@@ -361,9 +421,9 @@ void main(List<String> arguments) {
             stdout.write("\nUsia : ");
             coba_input = stdin.readLineSync();
             int? Usia = int.parse(coba_input!); //Usia
-            stdout.write("\Gaji : ");
-            coba_input = stdin.readLineSync();
-            int? Gaji = int.parse(coba_input!); //Gaji
+            // stdout.write("\Gaji : ");
+            // coba_input = stdin.readLineSync();
+            // int? Gaji = int.parse(coba_input!); //Gaji
             stdout.write("\penghasilan : ");
             coba_input = stdin.readLineSync();
             int? penghasilan = int.parse(coba_input!); //penghasilan
@@ -374,8 +434,8 @@ void main(List<String> arguments) {
             stdout.write("\TambahanGaji : ");
             coba_input = stdin.readLineSync();
             int? TambahanGaji = int.parse(coba_input!); //TambahanGaji
-            myListDosenLB.add(Dosen_LB(
-                Nama, Usia, Gaji, penghasilan, TambahanGaji, jumlahsks));
+            myListDosenLB
+                .add(Dosen_LB(Nama, Usia, 0, penghasilan, 0, jumlahsks));
             print(
                 'Nama ${myListDosenLB[counter_myListDosenLB].nama} - Usia : ${myListDosenLB[counter_myListDosenLB].usia} - Gaji : ${myListDosenLB[counter_myListDosenLB].Gaji} - Jumlah SKS : ${myListDosenLB[counter_myListDosenLB].jumlah_sks} - Penghasilan : ${myListDosenLB[counter_myListDosenLB].penghasilan}- Tambahan Gaji : ${myListDosenLB[counter_myListDosenLB].TambahanGaji}');
             counter_myListDosenLB++;
@@ -387,10 +447,10 @@ void main(List<String> arguments) {
             stdout.write("\nUsia : ");
             coba_input = stdin.readLineSync();
             int? Usia = int.parse(coba_input!); //Usia
-            stdout.write("\Gaji : ");
-            coba_input = stdin.readLineSync();
-            int? Gaji = int.parse(coba_input!); //Gaji
-            stdout.write("\penghasilan : ");
+            // stdout.write("\Gaji : ");
+            // coba_input = stdin.readLineSync();
+            // int? Gaji = int.parse(coba_input!); //Gaji
+            stdout.write("\npenghasilan : ");
             coba_input = stdin.readLineSync();
             int? penghasilan = int.parse(coba_input!); //penghasilan
             stdout.write("\njumlahsks : ");
@@ -403,8 +463,14 @@ void main(List<String> arguments) {
             coba_input = stdin.readLineSync();
             int? tunjangankehadiran =
                 int.parse(coba_input!); //tunjangankehadiran
-            myListDosenTetap.add(Dosen_Tetap(Nama, Usia, Gaji, TambahanGaji,
-                penghasilan, tunjangankehadiran, jumlahsks));
+            while (tunjangankehadiran! < 0) {
+              stdout.write(
+                  "\nInput Ulang, Tunjangan Kehadiran tidak bisa minus (<0) \ntunjangankehadiran : ");
+              coba_input = stdin.readLineSync();
+              tunjangankehadiran = int.parse(coba_input!); //tunjangankehadiran
+            }
+            myListDosenTetap.add(Dosen_Tetap(Nama, Usia, Gaji_Start,
+                TambahanGaji, penghasilan, tunjangankehadiran, jumlahsks));
             print(
                 'Nama ${myListDosenTetap[counter_myListDosenTetap].nama} - Usia : ${myListDosenTetap[counter_myListDosenTetap].usia} - Gaji : ${myListDosenTetap[counter_myListDosenTetap].Gaji} - Tambahan Gaji : ${myListDosenTetap[counter_myListDosenTetap].TambahanGaji}- Penghasilan : ${myListDosenTetap[counter_myListDosenTetap].penghasilan} - Tunjangan Kehadiran : ${myListDosenTetap[counter_myListDosenTetap].tunjangankehadiran} - Jumlah SKS : ${myListDosenTetap[counter_myListDosenTetap].jumlah_sks} ');
             counter_myListDosenTetap++;
@@ -418,41 +484,35 @@ void main(List<String> arguments) {
         break;
       }
     } else if (menu == 3) {
-      //Mahasiswa
+      print('Mahasiswa\n');
       for (int i = 0; i < myList.length; i++) {
         print(
             'Nama ${myList[i].nama} - Usia : ${myList[i].usia} - SKS : ${myList[i].SKS} -Mahasiswa Aktif : ${myList[i].Status} - IPS : ${myList[i].IPS} - IPK : ${myList[i].IPK} - Total SKS : ${myList[i].totalSKS}');
       }
       //Staf
+      print('Staf\n');
       for (int i = 0; i < counter_myListDosen; i++) {
         print(
             'Nama ${myListDosen[i].nama} - Usia : ${myListDosen[i].usia} - Gaji : ${myListDosen[i].Gaji}- Penghasilan : ${myListDosen[i].penghasilan} - Cuti : ${myListDosen[i].cuti} - Absensi : ${myListDosen[i].absensi} - Jumlah Absensi : ${myListDosen[i].jumlah_absensi} - Tunjangan Kehadiran : ${myListDosen[i].tunjangankehadiran}');
       }
       //Dosen Tamu
+      print('Dosen Tamu\n');
       for (int i = 0; i < counter_myListDosenTamu; i++) {
         print(
             'Nama ${myListDosenTamu[i].nama} - Usia : ${myListDosenTamu[i].usia} - Gaji : ${myListDosenTamu[i].Gaji} - Tambahan Gaji : ${myListDosenTamu[i].TambahanGaji}- Penghasilan : ${myListDosenTamu[i].penghasilan} - Tunjangan Kehadiran : ${myListDosenTamu[i].tunjangankehadiran} - Jumlah SKS : ${myListDosenTamu[i].jumlah_sks} ');
       }
-      //Dosen tetap**
+      //Dosen tetap
+      print('Dosen tetap\n');
       for (int i = 0; i < counter_myListDosenTetap; i++) {
         print(
             'Nama ${myListDosenTetap[i].nama} - Usia : ${myListDosenTetap[i].usia} - Gaji : ${myListDosenTetap[i].Gaji} - Tambahan Gaji : ${myListDosenTetap[i].TambahanGaji}- Penghasilan : ${myListDosenTetap[i].penghasilan} - Tunjangan Kehadiran : ${myListDosenTetap[i].tunjangankehadiran} - Jumlah SKS : ${myListDosenTetap[i].jumlah_sks} ');
       }
-      //Dosen LB**
+      //Dosen LB
+      print('Dosen LB\n');
       for (int i = 0; i < counter_myListDosenLB; i++) {
         print(
             'Nama ${myListDosenLB[i].nama} - Usia : ${myListDosenLB[i].usia} - Gaji : ${myListDosenLB[i].Gaji} - Jumlah SKS : ${myListDosenLB[i].jumlah_sks} - Penghasilan : ${myListDosenLB[i].penghasilan}- Tambahan Gaji : ${myListDosenLB[i].TambahanGaji}');
       }
-    } else if (menu == 4) {
-      for (int i = 0; i < myList.length; i++) {
-        print(
-            '${i + 1}. Nama ${myList[i].nama} - Usia : ${myList[i].usia} - SKS : ${myList[i].SKS} -Mahasiswa Aktif : ${myList[i].Status} - IPS : ${myList[i].IPS} - IPK : ${myList[i].IPK} - Total SKS : ${myList[i].totalSKS}');
-      }
-      stdout.write("Edit Data Mahasiswa Ke - ");
-      coba_input = stdin.readLineSync();
-      int? counter_mhs = int.parse(coba_input!) - 1; //counter_mhs
-      print(
-          'Apakah Benar Data Mahasiswa ini?. Nama ${myList[counter_mhs].nama}- Usia : ${myList[counter_mhs].usia}- SKS : ${myList[counter_mhs].SKS} -Mahasiswa Aktif : ${myList[counter_mhs].Status} - IPS : ${myList[counter_mhs].IPS} - IPK : ${myList[counter_mhs].IPK} - Total SKS : ${myList[counter_mhs].totalSKS}');
     }
   }
 }
