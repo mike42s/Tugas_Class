@@ -26,8 +26,8 @@ class Dosen_Tamu extends Pegawai implements Tugas {
   void penghasilan_bulanan() {
     this.TambahanGaji = this.jumlah_sks! * 40000;
     this.penghasilan = (this.TambahanGaji! + this.tunjangankehadiran!);
-    print(
-        'Tambahan Gaji (Gaji * SKS) : ${this.TambahanGaji} - Penghasilan : ${this.penghasilan}');
+    //print(
+    //    'Tambahan Gaji (Gaji * SKS) : ${this.TambahanGaji} - Penghasilan : ${this.penghasilan}');
   }
 
   @override
@@ -46,7 +46,7 @@ class Dosen_LB extends Pegawai implements Tugas {
   Dosen_LB(String? nama, int? usia, int? Gaji, int? penghasilan,
       int? TambahanGaji, int? jumlahsks)
       : super(nama, usia, Gaji, penghasilan) {
-    this.Gaji = Gaji;
+    this.Gaji = 0;
     this.TambahanGaji = TambahanGaji;
     this.jumlah_sks = jumlahsks;
     this.penghasilan = penghasilan;
@@ -55,8 +55,8 @@ class Dosen_LB extends Pegawai implements Tugas {
   void penghasilan_bulanan() {
     this.TambahanGaji = this.jumlah_sks! * 40000;
     this.penghasilan = (this.TambahanGaji! + this.Gaji!);
-    print(
-        'Tambahan Gaji (Gaji * SKS) : ${this.TambahanGaji} - Penghasilan : ${this.penghasilan}');
+    //print(
+    //    'Tambahan Gaji (Gaji * SKS) : ${this.TambahanGaji} - Penghasilan : ${this.penghasilan}');
   }
 
   @override
@@ -72,13 +72,14 @@ class Dosen_Tetap extends Dosen_Tamu implements Tugas {
       : super(nama, usia, Gaji, TambahanGaji, penghasilan, tunjangankehadiran,
             jumlahsks) {
     this.Gaji = Gaji;
+    penghasilan_bulanan();
   }
 
   void penghasilan_bulanan() {
     this.penghasilan =
         (this.TambahanGaji! + this.Gaji! + this.tunjangankehadiran!);
-    print(
-        'Tambahan Gaji (Gaji * SKS) : ${this.TambahanGaji} - Penghasilan : ${this.penghasilan} - Tunjangan Kehadiran : ${this.tunjangankehadiran}');
+    //print(
+    //    'Tambahan Gaji (Gaji * SKS) : ${this.TambahanGaji} - Penghasilan : ${this.penghasilan} - Tunjangan Kehadiran : ${this.tunjangankehadiran}');
   }
 
   @override

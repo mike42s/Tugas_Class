@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'Person.dart';
 import 'tugas.dart';
 
 ///tiap class punya ciri khas msg"
 class Mahasiswa extends Person implements Tugas {
-  int? SKS = 0;
+  int? SKS;
   bool? Status = false;
   double? IPS = 0;
   double? IPK = 0;
@@ -12,9 +14,26 @@ class Mahasiswa extends Person implements Tugas {
   Mahasiswa(String? nama, int? usia, int? SKS, bool? Status, double? IPS,
       double? IPK, int? totalSKS)
       : super(nama, usia) {
-    this.SKS = SKS;
-    this.IPK = IPK;
+    if (SKS! < 2 || SKS > 24) {
+      int? angka = 0;
+      int? a;
+      while (angka == 0) {
+        print('Input Ulang SKS : ');
+        String? coba_input = stdin.readLineSync();
+        a = int.parse(coba_input!);
+        if (a < 0 || a > 24) {
+          angka = 0;
+        } else {
+          angka = 1;
+        }
+      }
+      this.SKS = a;
+    } else {
+      this.SKS = SKS;
+    }
+    this.IPK = 0;
     this.IPS = IPS;
+    setIPS(this.IPS!);
     this.totalSKS = (totalSKS)!;
     this.Status = Status;
   }

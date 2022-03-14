@@ -13,7 +13,7 @@ class Staf extends Pegawai implements Tugas {
   Staf(String? nama, int? usia, int? Gaji, int? penghasilan, int? cuti,
       bool? absensi, int? jumlah_absensi, int? tunjangankehadiran)
       : super(nama, usia, Gaji, penghasilan) {
-    this.cuti = cuti!;
+    this.cuti = 12;
     this.absensi = absensi;
     this.jumlah_absensi = jumlah_absensi;
     this.tunjangankehadiran = tunjangankehadiran;

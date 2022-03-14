@@ -10,37 +10,7 @@ import 'dart:io';
 //Dosen tgl lihat jumlah sks, sistem login, penghasilan sama perhtiungan dpet brapa
 //staf blom
 void main(List<String> arguments) {
-  //cara manual
-  // var sm1 = Mahasiswa_s("Siapapun", 20, 5, true, 3.0, 3.5, 50);
-  // print(
-  //     'Nama ${sm1.nama} - Usia : ${sm1.usia} - Status : ${sm1.Status} - IPS : ${sm1.IPS} - IPK : ${sm1.IPK} - Total SKS : ${sm1.totalSKS}');
-  // sm1.target();
-  // print('--');
-  // var sm2 = Dosen_LB("c", 30, 1000, 2000, 10000, 50);
-  // sm2.penghasilan_bulanan();
-  // print(
-  //     'Nama ${sm2.nama} - Usia : ${sm2.usia} - Gaji : ${sm2.Gaji} - Jumlah SKS : ${sm2.jumlah_sks} - Penghasilan : ${sm2.penghasilan}- Tambahan Gaji : ${sm2.TambahanGaji}');
-  // print('--');
-
-  // var sm3 = Dosen_2("x", 20, 1000, 1000, 0, 3000, 50);
-  // sm3.penghasilan_bulanan();
-  // print(
-  //     'Nama ${sm3.nama} - Usia : ${sm3.usia} - Gaji : ${sm3.Gaji} - Tambahan Gaji : ${sm3.TambahanGaji}- Penghasilan : ${sm3.penghasilan} - Tunjangan Kehadiran : ${sm3.tunjangankehadiran} - Jumlah SKS : ${sm3.jumlah_sks} ');
-  // print('--');
-  // var sm4 = Dosen_3("z", 10, 1, 2, 3, 4, 10);
-  // sm4.penghasilan_bulanan();
-  // print(
-  //     'Nama ${sm4.nama} - Usia : ${sm4.usia} - Gaji : ${sm4.Gaji} - Tambahan Gaji : ${sm4.TambahanGaji}- Penghasilan : ${sm4.penghasilan} - Tunjangan Kehadiran : ${sm4.tunjangankehadiran} - Jumlah SKS : ${sm4.jumlah_sks} ');
-  // print('--');
-  // var sm5 = Staf_1("b", 12, 1000, 1000, 12, true, 0, 200);
-  // sm5.penghasilan_bulanan();
-  // print(
-  //     'Nama ${sm5.nama} - Usia : ${sm5.usia} - Gaji : ${sm5.Gaji}- Penghasilan : ${sm5.penghasilan} - Cuti : ${sm5.cuti} - Absensi : ${sm5.absensi} - Jumlah Absensi : ${sm5.jumlah_absensi} - Tunjangan Kehadiran : ${sm5.tunjangankehadiran}');
-  // print('--');
-  // sm5.absensi_perhitungan(true, 4000);
-  // sm5.pengajuan_cuti(true);
-
-  //auto
+  //auto input data dengan cara masuk ke menu daftar
   String? Input;
   List<Mahasiswa_s> myList = [];
   List<Staf> myListDosen = [];
@@ -49,6 +19,8 @@ void main(List<String> arguments) {
   String? coba_input;
   int exit = 0;
   int? menu;
+  int? cuti = 12;
+  double? IPK = 0;
 
   List<Dosen_Tamu> myListDosenTamu = [];
   int counter_myListDosenTamu = 0;
@@ -58,16 +30,20 @@ void main(List<String> arguments) {
   int counter_myListDosenTetap = 0;
   int? Gaji_Start = 0; //Asumsi semua gaji pegawai = sama
 
-  //semi auto
-  myListDosenTamu.add(Dosen_Tamu("Pak Tamu", 30, 300000, 0, 40000, 5000, 2));
-  counter_myListDosenTamu++;
-
-  stdout.write("Gaji Semua Pegawai : ");
-  coba_input = stdin.readLineSync();
-  Gaji_Start = int.parse(coba_input!);
+  //semi auto - Percobaan Data
+  //myListDosenTamu.add(Dosen_Tamu("Pak Tamu", 30, 300000, 0, 40000, 5000, 2));
+  //counter_myListDosenTamu++;
+  myListDosenLB.add(Dosen_LB("Pak LB", 50, 3000, 4000, 5000, 1));
+  counter_myListDosenLB++;
+  //myListDosenTetap.add(Dosen_Tetap("Pak Tetap", 40, 3000, 4000, 5000, 6000, 1));
+  //counter_myListDosenTetap++;
+  //myList.add(Mahasiswa_s("Hai", 15, 1, true, 1, 2, 12));
+  //stdout.write("Gaji Semua Pegawai : ");
+  //coba_input = stdin.readLineSync();
+  //Gaji_Start = int.parse(coba_input!);
   while (exit != 1) {
     stdout.write(
-        "Login Sebagai? : \n1.Sebagai Mahasiswa\n2.Sebagai Pegawai\n3.Cek All\n");
+        "Login Sebagai? : \n1.Sebagai Mahasiswa\n2.Sebagai Pegawai\n3.Cek All\n"); //Asumsi login dengan menggunakan nama dan usia
     Input = stdin.readLineSync();
     menu = int.parse(Input!);
     if (menu == 1) {
@@ -171,9 +147,9 @@ void main(List<String> arguments) {
         stdout.write("\nStatus Mahasiswa? \nTrue = 1, False = 2 : ");
         coba_input = stdin.readLineSync();
         int? Status = int.parse(coba_input!); //Status
-        stdout.write("\nIPK : ");
-        coba_input = stdin.readLineSync();
-        double? IPK = double.parse(coba_input!); //IPK
+        // stdout.write("\nIPK : ");
+        // coba_input = stdin.readLineSync();
+        // double? IPK = double.parse(coba_input!); //IPK
         stdout.write("\nIPS : ");
         coba_input = stdin.readLineSync();
         double? IPS = double.parse(coba_input!); //IPS
@@ -300,7 +276,7 @@ void main(List<String> arguments) {
         }
         if (temp_counter1 != null && temp_counter1 >= -1) {
           print(
-              'Nama ${myListDosen[temp_counter1!].nama} - Usia : ${myListDosen[temp_counter1].usia} - Gaji : ${myListDosen[temp_counter1].Gaji}- Penghasilan : ${myListDosen[temp_counter1].penghasilan} - Cuti : ${myListDosen[temp_counter1].cuti} - Absensi : ${myListDosen[temp_counter1].absensi} - Jumlah Absensi : ${myListDosen[temp_counter1].jumlah_absensi} - Tunjangan Kehadiran : ${myListDosen[temp_counter1].tunjangankehadiran}');
+              'Nama ${myListDosen[temp_counter1].nama} - Usia : ${myListDosen[temp_counter1].usia} - Gaji : ${myListDosen[temp_counter1].Gaji}- Penghasilan : ${myListDosen[temp_counter1].penghasilan} - Cuti : ${myListDosen[temp_counter1].cuti} - Absensi : ${myListDosen[temp_counter1].absensi} - Jumlah Absensi : ${myListDosen[temp_counter1].jumlah_absensi} - Tunjangan Kehadiran : ${myListDosen[temp_counter1].tunjangankehadiran}');
           myListDosen[temp_counter1].jumlah_absensi =
               myListDosen[temp_counter1].jumlah_absensi! +
                   1; //Asumsi tiap login = absen
@@ -338,9 +314,9 @@ void main(List<String> arguments) {
           coba_input = stdin.readLineSync();
           int? penghasilan = int.parse(coba_input!); //penghasilan
 
-          stdout.write("\ncuti : ");
-          coba_input = stdin.readLineSync();
-          int? cuti = int.parse(coba_input!); //cuti
+          // stdout.write("\ncuti : ");
+          // coba_input = stdin.readLineSync();
+          // int? cuti = int.parse(coba_input!); //cuti
           stdout.write("\nAbsensi? \nTrue = 1, False = 2 : ");
           coba_input = stdin.readLineSync();
           int? absensi = int.parse(coba_input!); //absensi
