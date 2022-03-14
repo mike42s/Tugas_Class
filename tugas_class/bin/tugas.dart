@@ -1,7 +1,6 @@
 import 'Mahasiswa.dart';
 
 class Tugas {
-  //menyusul
   String peran() {
     return '';
   }

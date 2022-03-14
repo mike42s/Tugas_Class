@@ -33,8 +33,8 @@ void main(List<String> arguments) {
   //semi auto - Percobaan Data
   //myListDosenTamu.add(Dosen_Tamu("Pak Tamu", 30, 300000, 0, 40000, 5000, 2));
   //counter_myListDosenTamu++;
-  myListDosenLB.add(Dosen_LB("Pak LB", 50, 3000, 4000, 5000, 1));
-  counter_myListDosenLB++;
+  //myListDosenLB.add(Dosen_LB("Pak LB", 50, 3000, 4000, 5000, 1));
+  //counter_myListDosenLB++;
   //myListDosenTetap.add(Dosen_Tetap("Pak Tetap", 40, 3000, 4000, 5000, 6000, 1));
   //counter_myListDosenTetap++;
   //myList.add(Mahasiswa_s("Hai", 15, 1, true, 1, 2, 12));
